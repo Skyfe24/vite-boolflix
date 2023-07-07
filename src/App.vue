@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import { api } from './data';
 import { store } from './data/store';
@@ -10,16 +11,27 @@ export default {
   },
   data() {
     return {
+      titleFilter: ''
 
 
     }
+  },
+  methods: {
+    setTitleFilter(term) {
+      this.titleFilter = term;
+    },
+    searchMovie() {
+      console.log(this.titleFilter);
+    }
   }
 }
+
+
 </script>
 
 <template>
   <!-- header-->
-  <AppHeader />
+  <AppHeader @term-change="setTitleFilter" @form-submit="searchMovie" />
 
   <!-- main-->
 </template>

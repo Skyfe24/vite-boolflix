@@ -1,18 +1,25 @@
 <script>
 export default {
+    data() {
+        return {
+            searchTerm: ''
+        }
+    },
     props: {
         placeholder: String,
         submitLabel: String,
-    }
-}
+    },
+    emits: ['term-change', 'form-submit']
+};
 
 </script>
 <template>
     <div class="container">
         <H2>BOOLFLIX</H2>
 
-        <form>
-            <input type="text" :placeholder="placeholder || 'write here'">
+        <form @submit.prevent="$emit('form-submit')">
+            <input v-model.trim="searchTerm" type="text" :placeholder="placeholder || 'write here'"
+                @keyup="$emit('term-change', searchTerm)">
             <button type="submit"> {{ submitLabel || 'search' }} </button>
         </form>
     </div>
