@@ -21,11 +21,15 @@ export default {
     setTitleFilter(term) {
       this.titleFilter = term;
     },
-    searchMovie() {
+    searchProductions() {
       axios.get(`${api.baseUri}/search/movie?api_key=${api.key}&language=${api.language}&query=${this.titleFilter}`)
         .then(res => {
           store.movies = res.data.results;
-        })
+        });
+      axios.get(`${api.baseUri}/search/tv?api_key=${api.key}&language=${api.language}&query=${this.titleFilter}`)
+        .then(res => {
+          store.series = res.data.results;
+        });
     }
   }
 }
@@ -34,7 +38,7 @@ export default {
 
 <template>
   <!-- header-->
-  <AppHeader @term-change="setTitleFilter" @form-submit="searchMovie" />
+  <AppHeader @term-change="setTitleFilter" @form-submit="searchProductions" />
 
   <!-- main-->
   <div class="container">
@@ -44,6 +48,13 @@ export default {
       <li> {{ movie.original_title }} </li>
       <li> {{ movie.original_language }} </li>
       <li> {{ movie.vote_average }} </li>
+    </ul>
+    <h3>Series</h3>
+    <ul v-for="serie in store.series" :key="serie.id">
+      <li> {{ serie.name }} </li>
+      <li> {{ serie.original_name }} </li>
+      <li> {{ serie.original_language }} </li>
+      <li> {{ serie.vote_average }} </li>
     </ul>
   </div>
 </template>
