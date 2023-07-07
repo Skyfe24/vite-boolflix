@@ -33,7 +33,7 @@ h2 {
 
 .container {
     background-color: rgb(44, 42, 42);
-    height: 100vh;
+
 }
 
 li {
@@ -42,7 +42,7 @@ li {
     text-decoration: none;
 
 
-    color: grey;
+    color: rgb(253, 252, 252);
 }
 
 .flex {
