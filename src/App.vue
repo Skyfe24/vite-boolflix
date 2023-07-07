@@ -39,7 +39,7 @@ export default {
   <!-- main-->
   <div class="container">
     <h3>Movies</h3>
-    <ul v-for="movie in store.movies">
+    <ul v-for="movie in store.movies" :key="movie.id">
       <li> {{ movie.title }} </li>
       <li> {{ movie.original_title }} </li>
       <li> {{ movie.original_language }} </li>
