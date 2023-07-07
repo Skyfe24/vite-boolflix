@@ -1,11 +1,12 @@
 <script>
 import AppHeader from './components/AppHeader.vue';
-import AppHero from './components/AppHero.vue';
+import { api } from './data';
+import { store } from './data/store';
 
 export default {
 
   components: {
-    AppHeader, AppHero
+    AppHeader,
   },
   data() {
     return {
@@ -19,10 +20,8 @@ export default {
 <template>
   <!-- header-->
   <AppHeader />
-  <AppHero />
-  <ComicCard />
+
   <!-- main-->
-  <AppMain :comic-books="comicBooks" />
 </template>
 
 

@@ -1,8 +1,20 @@
 <script>
+export default {
+    props: {
+        placeholder: String,
+        submitLabel: String,
+    }
+}
+
 </script>
 <template>
     <div class="container">
         <H2>BOOLFLIX</H2>
+
+        <form>
+            <input type="text" :placeholder="placeholder || 'write here'">
+            <button type="submit"> {{ submitLabel || 'search' }} </button>
+        </form>
     </div>
 </template >
 
