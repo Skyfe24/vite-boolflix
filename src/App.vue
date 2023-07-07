@@ -11,6 +11,7 @@ export default {
   },
   data() {
     return {
+      store,
       titleFilter: ''
 
 
@@ -21,11 +22,13 @@ export default {
       this.titleFilter = term;
     },
     searchMovie() {
-      console.log(this.titleFilter);
+      axios.get(`${api.baseUri}/search/movie?api_key=${api.key}&language=${api.language}&query=${this.titleFilter}`)
+        .then(res => {
+          store.movies = res.data.results;
+        })
     }
   }
 }
-
 
 </script>
 
@@ -34,11 +37,34 @@ export default {
   <AppHeader @term-change="setTitleFilter" @form-submit="searchMovie" />
 
   <!-- main-->
+  <div class="container">
+    <h3>Movies</h3>
+    <ul v-for="movie in store.movies">
+      <li> {{ movie.title }} </li>
+      <li> {{ movie.original_title }} </li>
+      <li> {{ movie.original_language }} </li>
+      <li> {{ movie.vote_average }} </li>
+    </ul>
+  </div>
 </template>
 
 
 <style>
 h3 {
   color: rgb(231, 65, 23)
+}
+
+li {
+
+  text-transform: uppercase;
+  text-decoration: none;
+
+
+  color: rgb(253, 252, 252);
+}
+
+.container {
+  background-color: rgb(44, 42, 42);
+
 }
 </style>
